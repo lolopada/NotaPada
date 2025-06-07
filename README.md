@@ -1,6 +1,6 @@
 # NotaPada
 
-NotaPada est une application de prise de notes moderne et intuitive construite avec Electron.
+NotaPada est une application de prise de notes construite avec Electron.
 
 ## 🚀 Installation
 
@@ -15,7 +15,18 @@ cd mon-app-electron
 npm install
 ```
 
-3. Lancez l'application :
+3. Créez un dossier `userdata` à la racine du projet :
+```bash
+mkdir userdata
+```
+
+4. Configurez le chemin du dossier dans settings.js :
+```javascript
+// Dans src/settings.js, vérifiez que le chemin pointe vers votre dossier userdata
+DATA_DIR: path.join(process.cwd(), 'userdata')
+```
+
+5. Lancez l'application :
 ```bash
 npm start
 ```

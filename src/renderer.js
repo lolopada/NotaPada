@@ -1,6 +1,6 @@
 const fs = require('fs').promises;
-const path = require('path');
 const { ipcRenderer } = require('electron');
+const { DATA_DIR } = require('./settings');
 
 let currentFilePath = null;
 
@@ -241,7 +241,7 @@ async function handleFileRename() {
             await ipcRenderer.invoke('rename-item', oldPath, newPath);
             currentFilePath = newPath;
             updateFileName(newPath);
-            await listFiles('./NOTES/');
+            await listFiles(DATA_DIR);
         } catch (error) {
             console.error('Erreur lors du renommage:', error);
         }
@@ -263,7 +263,7 @@ async function handleFileDelete() {
             document.querySelector('.welcome-container').style.display = 'flex';
             document.getElementById('file-content').style.display = 'none';
             currentFilePath = null;
-            await listFiles('./NOTES/');
+            await listFiles(DATA_DIR);
         } catch (error) {
             console.error('Erreur lors de la suppression:', error);
         }
@@ -322,7 +322,7 @@ async function saveFile(filePath, content, saveIndicator) {
     }
 }
 
-listFiles('./NOTES/');
+listFiles(DATA_DIR);
 document.getElementById('renameFileBtn').addEventListener('click', handleFileRename);
 document.getElementById('deleteFileBtn').addEventListener('click', handleFileDelete);
 

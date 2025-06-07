@@ -24,9 +24,9 @@ createFolderBtn.addEventListener('click', async () => {
     const folderName = folderNameInput.value.trim();
     if (folderName) {
         try {
-            await fs.mkdir(path.join('./NOTES/', folderName));
+            await fs.mkdir(path.join(DATA_DIR, folderName));
             modal.style.display = 'none';
-            await listFiles('./NOTES/');
+            await listFiles(DATA_DIR);
         } catch (error) {
             console.error('Erreur lors de la création du dossier:', error);
         }
