@@ -1,0 +1,523 @@
+:root {
+    /* Noirs moyens */
+    --black-charcoal: #1C1C1C;
+    --black-eerie: #222222;
+    --black-jet: #2C2C2C;
+    
+    /* Noirs clairs */
+    --black-onyx: #353535;
+    --black-raisin: #3F3F3F;
+    --black-light: #484848;
+
+     /* Blancs nuancés */
+    --white-platinum: #E8E8E8;
+    --white-gainsboro: #E2E2E2;
+    --white-light: #DCDCDC;
+
+    /* Verts */
+    --green-pale: #98FB98;
+    --green-dark: #2E8B57;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    user-select: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+        Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+}
+
+header {
+    position: fixed;
+    height: 100vh; 
+    width: 12rem;
+    background-color: var(--black-onyx);
+    padding: 0.5rem;
+    overflow-y: auto;
+    resize: horizontal;
+}
+header::-webkit-scrollbar {
+    display: none;
+}
+
+h1 {
+    color: var(--white-gainsboro);
+    background-color: rgba(255, 0, 0, 0.0);
+    margin: 0.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--white-light);
+}
+
+#fileList, #subFileList {
+    list-style: none;
+    padding: 0;
+    margin: 3rem 0 1rem 0;
+}
+
+#fileList li, #subFileList li {
+    color: var(--white-platinum);
+    padding: 0.5rem;
+    margin: 0.2rem 0;
+    cursor: pointer;
+}
+
+#fileList li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0.3rem 0.5rem;
+    position: relative;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+#fileList li:hover {
+    background-color: var(--black-raisin);
+}
+
+.file-item-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#fileList span {
+    flex: 0 1 auto; 
+    padding: 0.2rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.sub-header {
+    position: fixed;
+    height: 100vh;
+    width: 12rem;
+    background-color: var(--black-jet);
+    padding: 0.5rem;
+    overflow-y: auto;
+    user-select: none;
+    resize: horizontal;
+    min-width: 8rem;
+    max-width: 24rem;
+}
+
+.sub-header::-webkit-scrollbar {
+    display: none;
+}
+
+.sub-header h2 {
+    color: var(--white-gainsboro);
+    margin: 0.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--white-light);
+}
+
+#fileList li {
+    list-style: none;
+    margin: 0.2rem 0;
+}
+
+#fileList span {
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
+}
+
+#fileList span:hover {
+    background-color: var(--white-light);
+    color: var(--black-jet);
+    transform: translateX(4px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#fileList span:active {
+    transform: translateX(2px);
+    background-color: var(--white-gainsboro);
+}
+
+#fileList ul {
+    width: 100%;
+    margin-left: 1.5rem;
+    border-left: 1px solid var(--white-light);
+    padding-left: 0.5rem;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+#fileList ul.open {
+    max-height: 1000px; 
+    opacity: 1;
+}
+
+#fileList span[data-type="directory"]::before {
+    content: '❯';
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+
+#fileList span[data-type="directory"].open::before {
+    transform: rotate(90deg);
+}
+
+section {
+    margin-left: 13rem;
+    background-color: var(--black-light);
+    height: 100vh;
+}
+
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    color: var(--white-platinum);
+}
+
+.welcome-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    animation: fadeIn 1s ease-in;
+    color: var(--white-gainsboro);
+}
+
+.welcome-container p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    color: var(--white-light);
+}
+
+.welcome-container .sub-text {
+    font-size: 1rem;
+    color: var(--white-platinum);
+    opacity: 0.8;
+    margin-top: 2rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-10px); }
+}
+
+.new-folder-btn {
+    position: absolute;
+    top: 4.5rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: var(--black-jet);
+    color: var(--white-gainsboro);
+    border: 1px solid var(--white-light);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    padding: 0;
+    line-height: 1;
+}
+
+.new-folder-btn:hover {
+    background-color: var(--black-raisin);
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+}
+
+.modal {
+    position: fixed;
+    inset: 0; /* Remplace top: 0; left: 0; width: 100%; height: 100%; */
+    background-color: rgba(0, 0, 0, 0.5);
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+}
+
+.modal[style*="display: block"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--black-jet);
+    width: min(300px, 90%);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--white-light);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+    transition: transform 0.3s;
+}
+
+.modal[style*="display: block"] .modal-content {
+    transform: translateY(0);
+}
+
+.modal-content input {
+    width: 80%;
+    padding: 0.75rem;
+    margin: 1rem 0;
+    background-color: var(--black-raisin);
+    border: 1px solid var(--white-light);
+    border-radius: 4px;
+    color: var(--white-gainsboro);
+    transition: border-color 0.2s;
+}
+
+.modal-content input:focus {
+    outline: none;
+    border-color: var(--white-platinum);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.modal-buttons button {
+    padding: 0.5rem 1rem;
+    background-color: var(--black-raisin);
+    color: var(--white-gainsboro);
+    border: 1px solid var(--white-light);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-buttons button:hover {
+    background-color: var(--black-jet);
+    transform: translateY(-1px);
+}
+
+.modal-buttons button:active {
+    transform: translateY(0);
+}
+
+.modal-buttons button.delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.modal-buttons button.delete:hover {
+    background-color: #bd2130;
+}
+
+.modal-content h3 {
+    color: var(--white-gainsboro);
+    font-size: 1.25rem;
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.5rem;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+}
+
+.modal-content h3:hover {
+    opacity: 1;
+}
+
+.file-content {
+    display: none;
+    height: 100%;
+    direction: rtl;
+}
+
+.file-content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--black-jet);
+    border-bottom: 1px solid var(--black-light);
+    direction: ltr;
+}
+
+.file-content-header h2 {
+    color: var(--white-gainsboro);
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.file-content-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.file-content-actions .action-btn {
+    padding: 0.5rem;
+    border-radius: 4px;
+    background-color: transparent;
+    border: 1px solid var(--white-light);
+}
+
+.file-content-actions .action-btn:hover {
+    background-color: var(--black-raisin);
+}
+
+#editor {
+    flex: 1;
+    margin: 0;
+    padding: 1rem;
+    background-color: var(--black-light);
+    color: var(--white-gainsboro);
+    border: none;
+    resize: none;
+    font-family: monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+#editor {
+    width: 97%;
+    height: 97%;
+    background-color: var(--black-light);
+    color: var(--white-platinum);
+    border: none;
+    padding: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: 'Fira Code', 'Source Code Pro', Monaco, Menlo, Consolas, monospace;
+    resize: none;
+    outline: none;
+    tab-size: 4;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    direction: ltr;
+}
+
+#editor::selection {
+    background-color: var(--white-light);
+    color: var(--black-jet);
+}
+
+#editor::-webkit-scrollbar {
+    width: 8px;
+}
+
+#editor::-webkit-scrollbar-track {
+    background: var(--black-onyx);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#editor::-webkit-scrollbar-thumb {
+    background: var(--black-raisin);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#editor::-webkit-scrollbar-thumb:hover {
+    background: var(--white-light);
+    cursor: pointer;
+}
+
+#fileList li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0.3rem 0.5rem;
+    position: relative;
+}
+
+.file-item-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#fileList span {
+    flex: 0 1 auto;  /* au lieu de flex: 1; */
+    padding: 0.2rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.file-actions {
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    margin-left: auto;
+}
+
+#fileList li:hover .file-actions {
+    opacity: 1;
+}
+
+.action-btn {
+    padding: 2px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--white-light);
+    transition: transform 0.2s ease;
+}
+
+.action-btn:hover {
+    transform: scale(1.1);
+}
+
+.svg-rename-btn,
+.svg-delete-btn,
+.svg-add-btn {
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    width: 18px; 
+    height: 18px;
+}
+
+.save-indicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    background-color: var(--green-pale);
+    color: var(--black-onyx);
+    opacity: 0;
+}
+
+.save-indicator.saving {
+    opacity: 1;
+    background-color: var(--green-dark);
+    color: var(--white-platinum);
+}
+
+.save-indicator.saved {
+    opacity: 1;
+    background-color: var(--green-pale);
+    color: var(--black-onyx);
+}
