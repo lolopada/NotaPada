@@ -1,0 +1,53 @@
+:root {
+    /* ==================== PALETTE DE BASE ==================== */
+    --color-dark-primary: #1C1C1C;
+    --color-dark-secondary: #222222;
+    --color-dark-tertiary: #2C2C2C;
+    --color-dark-quaternary: #353535;
+    --color-dark-quinary: #3F3F3F;
+    --color-dark-senary: #484848;
+    
+    --color-light-primary: #E8E8E8;
+    --color-light-secondary: #E2E2E2;
+    --color-light-tertiary: #DCDCDC;
+    
+    --color-accent-success: #98FB98;
+    --color-accent-success-dark: #2E8B57;
+    --color-accent-danger: #dc3545;
+    --color-accent-danger-dark: #bd2130;
+
+    /* ==================== ARRIÈRE-PLANS ==================== */
+    --bg-main: var(--color-dark-secondary);
+    --bg-sidebar: var(--color-dark-tertiary);
+    --bg-header: var(--color-dark-quaternary);
+    --bg-editor: var(--color-dark-senary);
+    --bg-modal: var(--color-dark-tertiary);
+    --bg-input: var(--color-dark-quaternary);
+    --bg-button: var(--color-dark-quinary);
+    --bg-button-hover: var(--color-dark-quinary);
+    --bg-save-indicator: var(--color-accent-success);
+    --bg-saving-indicator: var(--color-accent-success-dark);
+    --bg-error: var(--color-accent-danger);
+    --bg-error-dark: var(--color-accent-danger-dark);
+
+    /* ==================== TEXTE ==================== */
+    --text-primary: var(--color-light-primary);
+    --text-secondary: var(--color-light-tertiary);
+    --text-button: var(--color-light-primary);
+    --text-save-indicator: var(--color-dark-quaternary);
+    --text-saving-indicator: var(--color-light-primary);
+    --text-selection: var(--color-dark-primary);
+
+    /* ==================== BORDURES ==================== */
+    --border-light: var(--color-light-tertiary);
+    --border-dark: var(--color-dark-quinary);
+    --border-focus: var(--color-accent-success);
+    --border-error: var(--color-accent-danger);
+
+    /* ==================== EFFETS ET INTERACTIONS ==================== */
+    --shadow-focus: var(--color-accent-success-dark);
+    --selection-bg: var(--color-accent-success);
+    --scrollbar-track: var(--color-dark-quaternary);
+    --scrollbar-thumb: var(--color-dark-quinary);
+    --scrollbar-thumb-hover: var(--color-dark-senary);
+}

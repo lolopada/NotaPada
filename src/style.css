@@ -1,24 +1,3 @@
-:root {
-    /* Noirs moyens */
-    --black-charcoal: #1C1C1C;
-    --black-eerie: #222222;
-    --black-jet: #2C2C2C;
-    
-    /* Noirs clairs */
-    --black-onyx: #353535;
-    --black-raisin: #3F3F3F;
-    --black-light: #484848;
-
-     /* Blancs nuancés */
-    --white-platinum: #E8E8E8;
-    --white-gainsboro: #E2E2E2;
-    --white-light: #DCDCDC;
-
-    /* Verts */
-    --green-pale: #98FB98;
-    --green-dark: #2E8B57;
-}
-
 body, html {
     margin: 0;
     padding: 0;
@@ -32,14 +11,13 @@ body, html {
     user-select: none;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
         Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-
 }
 
 header {
     position: fixed;
     height: 100vh; 
     width: 12rem;
-    background-color: var(--black-onyx);
+    background-color: var(--bg-sidebar);
     padding: 0.5rem;
     overflow-y: auto;
     resize: horizontal;
@@ -49,11 +27,11 @@ header::-webkit-scrollbar {
 }
 
 h1 {
-    color: var(--white-gainsboro);
+    color: var(--text-primary);
     background-color: rgba(255, 0, 0, 0.0);
     margin: 0.5rem 0;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--white-light);
+    border-bottom: 2px solid var(--border-light);
 }
 
 #fileList, #subFileList {
@@ -63,7 +41,7 @@ h1 {
 }
 
 #fileList li, #subFileList li {
-    color: var(--white-platinum);
+    color: var(--text-secondary);
     padding: 0.5rem;
     margin: 0.2rem 0;
     cursor: pointer;
@@ -80,7 +58,7 @@ h1 {
 }
 
 #fileList li:hover {
-    background-color: var(--black-raisin);
+    background-color: var(--bg-button-hover);
 }
 
 .file-item-header {
@@ -94,13 +72,14 @@ h1 {
     padding: 0.2rem;
     border-radius: 4px;
     transition: background-color 0.2s ease;
+    z-index: 200;
 }
 
 .sub-header {
     position: fixed;
     height: 100vh;
     width: 12rem;
-    background-color: var(--black-jet);
+    background-color: var(--bg-sidebar);
     padding: 0.5rem;
     overflow-y: auto;
     user-select: none;
@@ -114,10 +93,10 @@ h1 {
 }
 
 .sub-header h2 {
-    color: var(--white-gainsboro);
+    color: var(--text-primary);
     margin: 0.5rem 0;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--white-light);
+    border-bottom: 2px solid var(--border-light);
 }
 
 #fileList li {
@@ -134,21 +113,21 @@ h1 {
 }
 
 #fileList span:hover {
-    background-color: var(--white-light);
-    color: var(--black-jet);
+    background-color: var(--bg-button-hover);
+    color: var(--text-primary);
     transform: translateX(4px);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 #fileList span:active {
     transform: translateX(2px);
-    background-color: var(--white-gainsboro);
+    background-color: var(--bg-button-hover);
 }
 
 #fileList ul {
     width: 100%;
     margin-left: 1.5rem;
-    border-left: 1px solid var(--white-light);
+    border-left: 1px solid var(--border-dark);
     padding-left: 0.5rem;
     overflow: hidden;
     max-height: 0;
@@ -175,7 +154,7 @@ h1 {
 
 section {
     margin-left: 13rem;
-    background-color: var(--black-light);
+    background-color: var(--bg-main);
     height: 100vh;
 }
 
@@ -186,25 +165,25 @@ section {
     justify-content: center;
     height: 100vh;
     text-align: center;
-    color: var(--white-platinum);
+    color: var(--text-secondary);
 }
 
 .welcome-container h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     animation: fadeIn 1s ease-in;
-    color: var(--white-gainsboro);
+    color: var(--text-primary);
 }
 
 .welcome-container p {
     font-size: 1.2rem;
     margin: 0.5rem 0;
-    color: var(--white-light);
+    color: var(--text-secondary);
 }
 
 .welcome-container .sub-text {
     font-size: 1rem;
-    color: var(--white-platinum);
+    color: var(--text-secondary);
     opacity: 0.8;
     margin-top: 2rem;
     animation: bounce 2s infinite;
@@ -227,9 +206,9 @@ section {
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background-color: var(--black-jet);
-    color: var(--white-gainsboro);
-    border: 1px solid var(--white-light);
+    background-color: var(--bg-button-hover);
+    color: var(--text-primary);
+    border: 1px solid var(--border-dark);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -240,7 +219,7 @@ section {
 }
 
 .new-folder-btn:hover {
-    background-color: var(--black-raisin);
+    background-color: var(--bg-button-hover);
     transform: scale(1.1);
     transition: all 0.2s ease;
 }
@@ -264,11 +243,11 @@ section {
 }
 
 .modal-content {
-    background-color: var(--black-jet);
+    background-color: var(--bg-modal);
     width: min(400px, 90%);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid var(--black-raisin);
+    border: 1px solid var(--border-dark);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     position: fixed;
     top: 50%;
@@ -282,7 +261,7 @@ section {
 }
 
 .modal-content h3 {
-    color: var(--white-gainsboro);
+    color: var(--text-primary);
     font-size: 1.5rem;
     margin: 0 0 1.5rem 0;
     font-weight: 500;
@@ -292,19 +271,18 @@ section {
     width: 90%; 
     padding: 1rem;
     margin: 0.5rem 0 1.5rem 0;
-    background-color: var(--black-onyx);
-    border: 2px solid var(--black-raisin);
+    background-color: var(--bg-input);
+    border: 2px solid var(--border-dark);
     border-radius: 8px;
-    color: var(--white-gainsboro);
+    color: var(--text-primary);
     font-size: 1rem;
     transition: all 0.2s ease;
-    
 }
 
 .modal-content input:focus {
     outline: none;
-    border-color: var(--white-light);
-    box-shadow: 0 0 0 2px var(--black-raisin);
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 2px var(--shadow-focus);
 }
 
 .modal-buttons {
@@ -325,13 +303,13 @@ section {
 }
 
 .modal-buttons button:first-child {
-    background-color: var(--white-light);
-    color: var(--black-jet);
+    background-color: var(--bg-button);
+    color: var(--text-primary);
 }
 
 .modal-buttons button:last-child {
-    background-color: var(--black-raisin);
-    color: var(--white-gainsboro);
+    background-color: var(--bg-sidebar);
+    color: var(--text-primary);
 }
 
 .modal-buttons button:hover {
@@ -344,16 +322,16 @@ section {
 }
 
 .modal-buttons button.delete {
-    background-color: #dc3545;
-    color: white;
+    background-color: var(--bg-error);
+    color: var(--text-primary);
 }
 
 .modal-buttons button.delete:hover {
-    background-color: #bd2130;
+    background-color: var(--bg-error-dark);
 }
 
 .modal-content.error {
-    border-color: #dc3545;
+    border-color: var(--border-error);
 }
 
 .modal-content.error input {
@@ -370,13 +348,13 @@ section {
 }
 
 .modal-content.error .modal-buttons button:last-child {
-    background-color: #dc3545;
-    color: var(--white-gainsboro);
+    background-color: var(--bg-error);
+    color: var(--text-primary);
     padding: 0.8rem 2rem;
 }
 
 .modal-content.error .modal-buttons button:last-child:hover {
-    background-color: #bd2130;
+    background-color: var(--bg-error-dark);
 }
 
 .modal-content.error .modal-buttons button:last-child:active {
@@ -394,13 +372,13 @@ section {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: var(--black-jet);
-    border-bottom: 1px solid var(--black-light);
+    background-color: var(--bg-header);
+    border-bottom: 1px solid var(--border-light);
     direction: ltr;
 }
 
 .file-content-header h2 {
-    color: var(--white-gainsboro);
+    color: var(--text-primary);
     margin: 0;
     font-size: 1.2rem;
     font-weight: 500;
@@ -415,19 +393,19 @@ section {
     padding: 0.5rem;
     border-radius: 4px;
     background-color: transparent;
-    border: 1px solid var(--white-light);
+    border: 1px solid var(--border-dark);
 }
 
 .file-content-actions .action-btn:hover {
-    background-color: var(--black-raisin);
+    background-color: var(--bg-button-hover);
 }
 
 #editor {
     flex: 1;
     margin: 0;
     padding: 1rem;
-    background-color: var(--black-light);
-    color: var(--white-gainsboro);
+    background-color: var(--bg-editor);
+    color: var(--text-primary);
     border: none;
     resize: none;
     font-family: monospace;
@@ -438,8 +416,8 @@ section {
 #editor {
     width: 97%;
     height: 97%;
-    background-color: var(--black-light);
-    color: var(--white-platinum);
+    background-color: var(--bg-editor);
+    color: var(--text-secondary);
     border: none;
     padding: 1.5rem;
     font-size: 1rem;
@@ -456,8 +434,8 @@ section {
 }
 
 #editor::selection {
-    background-color: var(--white-light);
-    color: var(--black-jet);
+    background-color: var(--selection-bg);
+    color: var(--text-selection);
 }
 
 #editor::-webkit-scrollbar {
@@ -465,19 +443,19 @@ section {
 }
 
 #editor::-webkit-scrollbar-track {
-    background: var(--black-onyx);
+    background: var(--scrollbar-track);
     border-radius: 4px;
     cursor: pointer;
 }
 
 #editor::-webkit-scrollbar-thumb {
-    background: var(--black-raisin);
+    background: var(--scrollbar-thumb);
     border-radius: 4px;
     cursor: pointer;
 }
 
 #editor::-webkit-scrollbar-thumb:hover {
-    background: var(--white-light);
+    background: var(--scrollbar-thumb-hover);
     cursor: pointer;
 }
 
@@ -496,7 +474,7 @@ section {
 }
 
 #fileList span {
-    flex: 0 1 auto;  /* au lieu de flex: 1; */
+    flex: 0 1 auto; 
     padding: 0.2rem;
     border-radius: 4px;
     transition: background-color 0.2s ease;
@@ -520,7 +498,7 @@ section {
     background: transparent;
     cursor: pointer;
     font-size: 12px;
-    color: var(--white-light);
+    color: var(--text-secondary);
     transition: transform 0.2s ease;
 }
 
@@ -547,19 +525,19 @@ section {
     border-radius: 4px;
     font-size: 0.8rem;
     transition: all 0.3s ease;
-    background-color: var(--green-pale);
-    color: var(--black-onyx);
+    background-color: var(--bg-save-indicator);
+    color: var(--text-save-indicator);
     opacity: 0;
 }
 
 .save-indicator.saving {
     opacity: 1;
-    background-color: var(--green-dark);
-    color: var(--white-platinum);
+    background-color: var(--bg-saving-indicator);
+    color: var(--text-saving-indicator);
 }
 
 .save-indicator.saved {
     opacity: 1;
-    background-color: var(--green-pale);
-    color: var(--black-onyx);
+    background-color: var(--bg-save-indicator);
+    color: var(--text-save-indicator);
 }

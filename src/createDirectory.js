@@ -12,10 +12,25 @@ newFolderBtn.addEventListener('click', async () => {
     
     if (folderName) {
         try {
-            await fs.mkdir(path.join(DATA_DIR, folderName));
-            await listFiles(DATA_DIR);
+            const newFolderPath = path.join(DATA_DIR, folderName);
+            
+            try {
+                await fs.access(newFolderPath);
+                await modalManager.show({
+                    title: `Un dossier nommé "${folderName}" existe déjà`,
+                    type: 'error'
+                });
+                return;
+            } catch {
+                await fs.mkdir(newFolderPath);
+                await listFiles(DATA_DIR);
+            }
         } catch (error) {
             console.error('Erreur lors de la création du dossier:', error);
+            await modalManager.show({
+                title: `Erreur lors de la création du dossier: ${error.message}`,
+                type: 'error'
+            });
         }
     }
 });

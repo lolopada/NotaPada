@@ -24,11 +24,11 @@ class ModalManager {
             this.input.value = options.defaultValue || '';
             this.input.placeholder = options.placeholder || '';
             
-            // Gestion du type 'error'
             if (options.type === 'error') {
                 this.modal.querySelector('.modal-content').classList.add('error');
                 this.confirmBtn.style.display = 'none';
                 this.cancelBtn.textContent = 'OK';
+                this.input.style.display = 'none';
             } else {
                 this.modal.querySelector('.modal-content').classList.remove('error');
                 this.confirmBtn.style.display = 'block';

@@ -90,7 +90,7 @@ async function listFiles(directoryPath) {
                     await createNewFile(fullPath, subList);
                 });
                 
-                fileSpan.addEventListener('click', async (event) => {
+                li.addEventListener('click', async (event) => {
                     await toggleDirectory(fileSpan, subList, fullPath);
                 });
             }
