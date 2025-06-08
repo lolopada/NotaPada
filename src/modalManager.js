@@ -24,14 +24,25 @@ class ModalManager {
             this.input.value = options.defaultValue || '';
             this.input.placeholder = options.placeholder || '';
             
-            if (options.type === 'confirm') {
-                this.input.style.display = 'none';
-                this.confirmBtn.textContent = 'Supprimer';
-                this.confirmBtn.classList.add('delete');
+            // Gestion du type 'error'
+            if (options.type === 'error') {
+                this.modal.querySelector('.modal-content').classList.add('error');
+                this.confirmBtn.style.display = 'none';
+                this.cancelBtn.textContent = 'OK';
             } else {
-                this.input.style.display = 'block';
-                this.confirmBtn.textContent = 'Confirmer';
-                this.confirmBtn.classList.remove('delete');
+                this.modal.querySelector('.modal-content').classList.remove('error');
+                this.confirmBtn.style.display = 'block';
+                this.cancelBtn.textContent = 'Annuler';
+                
+                if (options.type === 'confirm') {
+                    this.input.style.display = 'none';
+                    this.confirmBtn.textContent = 'Supprimer';
+                    this.confirmBtn.classList.add('delete');
+                } else {
+                    this.input.style.display = 'block';
+                    this.confirmBtn.textContent = 'Confirmer';
+                    this.confirmBtn.classList.remove('delete');
+                }
             }
 
             const handleConfirm = () => {

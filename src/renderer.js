@@ -155,9 +155,20 @@ async function createNewFile(fullPath, subList) {
     if (fileName) {
         try {
             const newFilePath = path.join(fullPath, fileName);
-            await ipcRenderer.invoke('create-file', newFilePath);
-            if (subList.classList.contains('open')) {
-                await showSubDirectory(fullPath, subList);
+            
+            try {
+                await fs.access(newFilePath);
+                
+                await modalManager.show({
+                    title: `Un fichier nommé "${fileName}" existe déjà dans ce dossier`,
+                    type: 'error'
+                });
+                return;
+            } catch {
+                await ipcRenderer.invoke('create-file', newFilePath);
+                if (subList.classList.contains('open')) {
+                    await showSubDirectory(fullPath, subList);
+                }
             }
         } catch (error) {
             console.error('Erreur lors de la création du fichier:', error);
