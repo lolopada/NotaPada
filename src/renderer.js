@@ -209,7 +209,10 @@ async function showSubDirectory(dirPath, subList) {
             
             if (stats.isFile()) {
                 fileSpan.dataset.type = 'file';
-                fileSpan.addEventListener('click', () => openFile(fullPath));
+                fileSpan.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    openFile(fullPath);
+                });
             }
             
             subList.appendChild(li);
