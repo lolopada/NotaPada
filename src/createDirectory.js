@@ -23,7 +23,7 @@ newFolderBtn.addEventListener('click', async () => {
                 return;
             } catch {
                 await fs.mkdir(newFolderPath);
-                await listFiles(DATA_DIR);
+                await window.fileManager.listFiles(window.DATA_DIR);
             }
         } catch (error) {
             console.error('Erreur lors de la création du dossier:', error);

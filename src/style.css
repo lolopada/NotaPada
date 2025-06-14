@@ -68,10 +68,12 @@ h1 {
 }
 
 #fileList span {
-    flex: 0 1 auto; 
-    padding: 0.2rem;
+    flex: 0 1 auto;
+    padding: 0.2rem 0.5rem;
     border-radius: 4px;
-    transition: background-color 0.2s ease;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
     z-index: 200;
 }
 
@@ -104,13 +106,6 @@ h1 {
     margin: 0.2rem 0;
 }
 
-#fileList span {
-    cursor: pointer;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    transition: all 0.2s ease-in-out;
-    display: inline-block;
-}
 
 #fileList span:hover {
     background-color: var(--bg-button-hover);
@@ -199,10 +194,21 @@ section {
     50% { transform: translateX(-10px); }
 }
 
-.new-folder-btn {
+.header-buttons {
     position: absolute;
     top: 4.5rem;
-    right: 1rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    width: calc(100% - 1rem);
+    justify-content: space-between;
+}
+
+.new-folder-btn {
+    position: relative;
+    top: 0;
+    right: 0.5rem;
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
@@ -234,7 +240,7 @@ section {
     visibility: hidden;
     transition: all 0.3s ease-in-out;
     backdrop-filter: blur(3px);
-    z-index: 1000;
+    z-index: 1200;
 }
 
 .modal[style*="display: block"] {
@@ -474,10 +480,13 @@ section {
 }
 
 #fileList span {
-    flex: 0 1 auto; 
-    padding: 0.2rem;
+    flex: 0 1 auto;
+    padding: 0.2rem 0.5rem;
     border-radius: 4px;
-    transition: background-color 0.2s ease;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
+    z-index: 200;
 }
 
 .file-actions {

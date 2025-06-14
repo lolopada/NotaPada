@@ -4,11 +4,21 @@
     <title>NotaPada</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="colors.css">
+    <link rel="stylesheet" href="settings-windows.css">
+    <link rel="stylesheet" href="markdown-style.css">
   </head>
   <body>
     <header>
       <h1>NotaPada</h1>
-      <button id="newFolderBtn" class="new-folder-btn">+</button>
+      <div class="header-buttons">
+        <button id="settingsBtn" class="settings-btn" title="Paramètres">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+        <button id="newFolderBtn" class="new-folder-btn">+</button>
+      </div>
       <ul id="fileList"></ul>
     
     <div id="subHeader" class="sub-header" style="display: none;">
@@ -29,6 +39,20 @@
         <div class="file-content-header">
           <h2 id="current-file-name">Sans titre</h2>
           <div class="file-content-actions">
+            <button class="action-btn" id="markdownToggleBtn" title="Activer/Désactiver Markdown">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"></path>
+                <path d="M9 9h1l1 3 1-3h1"></path>
+                <path d="M9 17v-8"></path>
+              </svg>
+            </button>
+            <button class="action-btn" id="previewToggleBtn" title="Mode Prévisualisation" style="display: none;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
             <button class="action-btn" id="renameFileBtn" title="Renommer">
               <svg class="svg-rename-btn" xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536">
                 <path fill="currentColor" d="m363 1408l91-91l-235-235l-91 91v107h128v128zm523-928q0-22-22-22q-10 0-17 7l-542 542q-7 7-7 17q0 22 22 22q10 0 17-7l542-542q7-7 7-17m-54-192l416 416l-832 832H0v-416zm683 96q0 53-37 90l-166 166l-416-416l166-165q36-38 90-38q53 0 91 38l235 234q37 39 37 91"/>
@@ -39,7 +63,14 @@
             </button>
           </div>
         </div>
-        <textarea id="editor"></textarea>
+        <div class="editor-container">
+          <div class="editor-wrapper">
+            <textarea id="editor"></textarea>
+          </div>
+          <div class="preview-wrapper" id="previewWrapper" style="display: none;">
+            <div id="markdownPreview" class="markdown-preview"></div>
+          </div>
+        </div>
         <div id="saveIndicator" class="save-indicator">Sauvegardé</div>
       </div>
     </section>
@@ -54,9 +85,50 @@
         </div>
       </div>
     </div>
+
+    <div id="settingsModal" class="settings-modal">
+      <div class="settings-content">
+        <div class="settings-header">
+          <h2>Paramètres</h2>
+          <button id="closeSettingsBtn" class="close-settings-btn">&times;</button>
+        </div>
+        <div class="settings-body">
+          <div class="settings-section">
+            <h3>Apparence</h3>
+            <div class="setting-item">
+              <label for="themeSwitch">Thème sombre</label>
+              <label class="switch">
+                <input type="checkbox" id="themeSwitch">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="setting-item">
+              <label for="fontSize">Taille de police</label>
+              <select id="fontSize">
+                <option value="12px">Petite</option>
+                <option value="16px" selected>Moyenne</option>
+                <option value="20px">Grande</option>
+              </select>
+            </div>
+          </div>
+          <div class="settings-section">
+            <h3>À propos</h3>
+            <div class="about-info">
+              <p>NotaPada v1.0.0</p>
+              <p>Stockage: ./NOTES</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="settings.js"></script>
     <script src="modalManager.js"></script>
-    <script src="renderer.js"></script>
+    <script src="fileManager.js"></script>
+    <script src="editorManager.js"></script>
+    <script src="markdownManager.js"></script>
+    <script src="settingsManager.js"></script>
     <script src="createDirectory.js"></script>
+    <script src="renderer.js"></script>
   </body>
 </html>

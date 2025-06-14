@@ -1,7 +1,6 @@
 const path = require('path');
 
-const settings = {
-    DATA_DIR: path.join(process.cwd(), 'NOTES'), // <-- modifier le chemin ici 
-};
+const DATA_DIR = path.join(process.cwd(), 'NOTES');
 
-module.exports = settings;
+// Make DATA_DIR globally available
+window.DATA_DIR = DATA_DIR;

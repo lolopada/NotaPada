@@ -3,6 +3,16 @@ const { screen } = require('electron');
 const fs = require('fs').promises;
 const path = require('path'); 
 
+async function ensureNotesDirectory() {
+  const notesPath = path.join(process.cwd(), 'NOTES');
+  try {
+    await fs.access(notesPath);
+  } catch {
+    await fs.mkdir(notesPath, { recursive: true });
+    console.log('NOTES directory created successfully');
+  }
+}
+
 function createWindow() {
   const primaryDisplay = screen.getPrimaryDisplay();
   const { width, height } = primaryDisplay.workAreaSize;
@@ -28,6 +38,11 @@ function createWindow() {
   globalShortcut.register('Control+Shift+I', () => {
     win.webContents.toggleDevTools();
   });
+
+  // Sauvegarder avant fermeture
+  win.on('before-quit', (event) => {
+    win.webContents.send('force-save');
+  });
 }
 
 // Ajouter ces handlers IPC
@@ -47,4 +62,7 @@ ipcMain.handle('save-file', async (event, filePath, content) => {
   await fs.writeFile(filePath, content, 'utf-8');
 });
 
-app.whenReady().then(createWindow);
+app.whenReady().then(async () => {
+  await ensureNotesDirectory();
+  createWindow();
+});

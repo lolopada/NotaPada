@@ -70,4 +70,3 @@ class ModalManager {
 }
 
 const modalManager = new ModalManager();
-module.exports = modalManager;

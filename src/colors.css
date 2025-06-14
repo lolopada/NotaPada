@@ -11,12 +11,26 @@
     --color-light-secondary: #E2E2E2;
     --color-light-tertiary: #DCDCDC;
     
+    /* Nouvelles couleurs pour le thème clair */
+    --color-white-primary: #FFFFFF;
+    --color-white-secondary: #FAFAFA;
+    --color-white-tertiary: #F5F5F5;
+    --color-gray-light: #E0E0E0;
+    --color-gray-medium: #BDBDBD;
+    --color-gray-dark: #757575;
+    --color-blue-primary: #2196F3;
+    --color-blue-secondary: #1976D2;
+    --color-green-primary: #4CAF50;
+    --color-orange-primary: #FF9800;
+    
     --color-accent-success: #98FB98;
     --color-accent-success-dark: #2E8B57;
     --color-accent-danger: #dc3545;
     --color-accent-danger-dark: #bd2130;
+}
 
-    /* ==================== ARRIÈRE-PLANS ==================== */
+/* ==================== THÈME SOMBRE (PAR DÉFAUT) ==================== */
+:root:not(.light-theme) {
     --bg-main: var(--color-dark-secondary);
     --bg-sidebar: var(--color-dark-tertiary);
     --bg-header: var(--color-dark-quaternary);
@@ -30,7 +44,6 @@
     --bg-error: var(--color-accent-danger);
     --bg-error-dark: var(--color-accent-danger-dark);
 
-    /* ==================== TEXTE ==================== */
     --text-primary: var(--color-light-primary);
     --text-secondary: var(--color-light-tertiary);
     --text-button: var(--color-light-primary);
@@ -38,16 +51,48 @@
     --text-saving-indicator: var(--color-light-primary);
     --text-selection: var(--color-dark-primary);
 
-    /* ==================== BORDURES ==================== */
     --border-light: var(--color-light-tertiary);
     --border-dark: var(--color-dark-quinary);
     --border-focus: var(--color-accent-success);
     --border-error: var(--color-accent-danger);
 
-    /* ==================== EFFETS ET INTERACTIONS ==================== */
     --shadow-focus: var(--color-accent-success-dark);
     --selection-bg: var(--color-accent-success);
     --scrollbar-track: var(--color-dark-quaternary);
     --scrollbar-thumb: var(--color-dark-quinary);
     --scrollbar-thumb-hover: var(--color-dark-senary);
+}
+
+/* ==================== THÈME CLAIR ==================== */
+:root.light-theme {
+    --bg-main: var(--color-white-secondary);
+    --bg-sidebar: var(--color-white-primary);
+    --bg-header: var(--color-white-tertiary);
+    --bg-editor: var(--color-white-primary);
+    --bg-modal: var(--color-white-primary);
+    --bg-input: var(--color-white-tertiary);
+    --bg-button: var(--color-blue-primary);
+    --bg-button-hover: var(--color-blue-secondary);
+    --bg-save-indicator: var(--color-green-primary);
+    --bg-saving-indicator: var(--color-orange-primary);
+    --bg-error: var(--color-accent-danger);
+    --bg-error-dark: var(--color-accent-danger-dark);
+
+    --text-primary: var(--color-dark-secondary);
+    --text-secondary: var(--color-gray-dark);
+    --text-button: var(--color-white-primary);
+    --text-save-indicator: var(--color-white-primary);
+    --text-saving-indicator: var(--color-white-primary);
+    --text-selection: var(--color-white-primary);
+
+    --border-light: var(--color-gray-light);
+    --border-dark: var(--color-gray-medium);
+    --border-focus: var(--color-blue-primary);
+    --border-error: var(--color-accent-danger);
+
+    --shadow-focus: rgba(33, 150, 243, 0.3);
+    --selection-bg: var(--color-blue-primary);
+    --scrollbar-track: var(--color-gray-light);
+    --scrollbar-thumb: var(--color-gray-medium);
+    --scrollbar-thumb-hover: var(--color-gray-dark);
 }
